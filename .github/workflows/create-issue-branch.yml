@@ -14,7 +14,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: 'feature/${{ github.event.issue.number}}-${{issue.title.issue.number}}'
+          branch: 'feature/${issue.number}-${issue.number}'
   create_bug_branch:
     runs-on: ubuntu-latest
     if: ${{ github.event.comment.body == 'CB-B'}}
