@@ -21,8 +21,6 @@ jobs:
     steps:
       - name: Create Bug Branch
         uses: robvanderleek/create-issue-branch@v1.5
-        with:
-          branchName: 'bug/${issue.number}-${issue.title,}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   create_hotfix_branch:
@@ -33,5 +31,14 @@ jobs:
         uses: robvanderleek/create-issue-branch@v1.5
         with:
           branchName: 'hotfix/${issue.number}-${issue.title,}'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  create-issue-branch:
+    name: "create issue branch"
+    runs-on: ubuntu-latest
+    steps:
+      - name: create the issue branch
+        uses: robvanderleek/create-issue-branch@master
+        id: create-issue-branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
