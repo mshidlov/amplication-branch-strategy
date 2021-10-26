@@ -1,0 +1,16 @@
+name: Post On Discord
+
+on:
+  workflow_dispatch:
+
+jobs:
+  post message:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@99b3d92
+        with:
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
