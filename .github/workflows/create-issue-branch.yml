@@ -11,24 +11,27 @@ jobs:
     steps:
       - name: Create Feature Branch
         uses: robvanderleek/create-issue-branch@main
+        with:
+          branchName: 'feature/${issue.number}-${issue.title,}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        branchName: 'feature/${issue.number}-${issue.title,}'
   create_bug_branch:
     runs-on: ubuntu-latest
     if: ${{ github.event.comment.body == 'CB-B'}}
     steps:
       - name: Create Bug Branch
         uses: robvanderleek/create-issue-branch@main
+        with:
+          branchName: 'bug/${issue.number}-${issue.title,}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        branchName: 'bug/${issue.number}-${issue.title,}'
   create_hotfix_branch:
     runs-on: ubuntu-latest
     if: ${{ github.event.comment.body == 'CB-H'}}
     steps:
       - name: Create Hotfix Branch
         uses: robvanderleek/create-issue-branch@main
+        with:
+          branchName: 'hotfix/${issue.number}-${issue.title,}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        branchName: 'hotfix/${issue.number}-${issue.title,}'
