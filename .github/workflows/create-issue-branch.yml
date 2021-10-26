@@ -10,7 +10,7 @@ jobs:
     if: ${{ github.event.comment.body == 'CB-F'}}
     steps:
       - name: Create Feature Branch
-        uses: robvanderleek/create-issue-branch@main
+        uses: robvanderleek/create-issue-branch@v1.5
         with:
           branchName: 'feature/${issue.number}-${issue.title,}'
         env:
