@@ -1,0 +1,34 @@
+name: Deploy To Staging
+
+on:
+  issue_comment:
+    types: [ created ]
+
+jobs:
+  create_feature_branch:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.comment.body == 'CB-F'}}
+    steps:
+      - name: Create Feature Branch
+        uses: robvanderleek/create-issue-branch@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        branchName: 'feature/${issue.number}-${issue.title,}'
+  create_bug_branch:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.comment.body == 'CB-B'}}
+    steps:
+      - name: Create Bug Branch
+        uses: robvanderleek/create-issue-branch@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        branchName: 'bug/${issue.number}-${issue.title,}'
+  create_hotfix_branch:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.comment.body == 'CB-H'}}
+    steps:
+      - name: Create Hotfix Branch
+        uses: robvanderleek/create-issue-branch@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        branchName: 'hotfix/${issue.number}-${issue.title,}'
