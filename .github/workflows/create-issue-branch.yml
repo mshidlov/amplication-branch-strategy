@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.comment.body == 'CB-F'}}
     steps:
+      - run: echo ${{github.event.issue}}
       - name: Create Feature Branch
         uses: peterjgrainger/action-create-branch@v2.0.1
         env:
