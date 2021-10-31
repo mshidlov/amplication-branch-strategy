@@ -18,4 +18,4 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@0.3.2
         with:
-          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed. @{{ EVENT_PAYLOAD.head_commit.username }}\{{ EVENT_PAYLOAD.head_commit.name }} - {{GITHUB_REPOSITORY}}@{{EVENT_PAYLOAD.head_commit.id}}'
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed. @{{ EVENT_PAYLOAD.head_commit.author.username }}\{{ EVENT_PAYLOAD.head_commit.author.name }} - {{GITHUB_REPOSITORY}}@{{EVENT_PAYLOAD.head_commit.id}}'
