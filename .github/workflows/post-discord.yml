@@ -3,6 +3,8 @@ name: Post On Discord
 
 on:
   workflow_dispatch:
+#pritier
+#linter
 
 jobs:
   post-message:
