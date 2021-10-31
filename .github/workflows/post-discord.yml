@@ -3,12 +3,16 @@ name: Post On Discord
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - release/*
 
 jobs:
   post-message:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
+      - uses: hmarr/debug-action@v2
       - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
