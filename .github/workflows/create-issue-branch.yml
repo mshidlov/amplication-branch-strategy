@@ -1,6 +1,8 @@
 name: Deploy To Staging
 
 on:
+  pull_request:
+    
   issue_comment:
     types: [ created ]
 

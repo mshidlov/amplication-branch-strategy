@@ -6,6 +6,8 @@ on:
   push:
     branches:
       - release/*
+#pritier
+#linter
 
 jobs:
   post-message:
