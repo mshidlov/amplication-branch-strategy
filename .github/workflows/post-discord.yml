@@ -7,17 +7,37 @@ on:
 #linter
 
 jobs:
-  post-message:
-    runs-on: ubuntu-latest
-    timeout-minutes: 120
+  one:
+    runs-on: ${{ matrix.os }}
+    outputs:
+      myvar: ${{ steps.step1.outputs.myvar }}    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     steps:
-      - name: Discord notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_EMBEDS: '[{"color":39423,"title":"Some title","description":"Some description here","thumbnail":{"url":"https://i.imgur.com/AfFp7pu.png"},"fields":[{"name":"Regular field title","value":"Some value here"},{"name":"dbvdsb​","value":"​vdsvds","inline":false},{"name":"Inline field title","value":"Some value here","inline":true},{"name":"Inline field title","value":" Some value here","inline":true},{"name":"Inline field title","value":"Some value here","inline":true}],"image":{"url":"https://i.imgur.com/AfFp7pu.png"},"footer":{"text":"Some footer text here","icon_url":"https://i.imgur.com/AfFp7pu.png"}}]'
+    - id: step1
+      run: echo "::set-output name=myvar::${{ matrix.os }}"
+  two:
+    runs-on: ubuntu-latest
+    needs: one
+    steps:
+    - run: echo '${{ needs.one.outputs.myvar }}'
+    - run: echo '${{ toJson(needs.one.outputs.myvar) }}'
+    - run: echo '${{ toJson(needs.one.outputs) }}'
+
+
+
+#   post-message:
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 120
+#     steps:
+#       - name: Discord notification
+#         env:
+#           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+#           DISCORD_EMBEDS: '[{"color":39423,"title":"Some title","description":"Some description here","thumbnail":{"url":"https://i.imgur.com/AfFp7pu.png"},"fields":[{"name":"Regular field title","value":"Some value here"},{"name":"dbvdsb​","value":"​vdsvds","inline":false},{"name":"Inline field title","value":"Some value here","inline":true},{"name":"Inline field title","value":" Some value here","inline":true},{"name":"Inline field title","value":"Some value here","inline":true}],"image":{"url":"https://i.imgur.com/AfFp7pu.png"},"footer":{"text":"Some footer text here","icon_url":"https://i.imgur.com/AfFp7pu.png"}}]'
           
-          #,,"thumbnail":{"url":"https://i.imgur.com/AfFp7pu.png"},}
-          #'[{"title":"Meow!","color":1127128},{"title":"Meow-meow!","color":14177041}]'
-        uses: Ilshidur/action-discord@0.3.2
-        with:
-          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+#           #,,"thumbnail":{"url":"https://i.imgur.com/AfFp7pu.png"},}
+#           #'[{"title":"Meow!","color":1127128},{"title":"Meow-meow!","color":14177041}]'
+#         uses: Ilshidur/action-discord@0.3.2
+#         with:
+#           args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
