@@ -10,7 +10,8 @@ jobs:
   one:
     runs-on: ${{ matrix.os }}
     outputs:
-      myvar: ${{ steps.step1.outputs.myvar }}    
+      ubuntu-latest: ${{ steps.step1.outputs.ubuntu-latest }}    
+      windows-latest: ${{ steps.step1.outputs.windows-latest }}    
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
