@@ -17,9 +17,13 @@ jobs:
     steps:
     - id: step1
       run: |
-        var=$(echo "$([ -z "${{steps.step1.outputs.test}}" ] && echo "[]" || echo "${{steps.step1.outputs.test}}")" | jq '. += ["${{ matrix.os }}"]')
-        echo "$var"
-        echo "::set-output name=test::$var"
+      
+        var1=$([ -z "${{steps.step1.outputs.test}}" ] && echo "[]" || echo "${{steps.step1.outputs.test}}")
+        echo "var1::$var1"
+        var2=$(echo "$var1" | jq '. += ["${{ matrix.os }}"]')
+        echo "var2::$var2"
+        echo "set-output"
+        echo ::set-output name=test::$var
         
   two:
     runs-on: ubuntu-latest
