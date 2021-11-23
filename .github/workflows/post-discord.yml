@@ -28,6 +28,11 @@ jobs:
         echo "var2::$var2"
         echo "set-output"
         echo ::set-output name=test::$var
+    - name: test1
+      run: echo "test1"
+    - name: test2
+      if: failur()
+      run: echo "test2"      
         
   two:
     runs-on: ubuntu-latest
