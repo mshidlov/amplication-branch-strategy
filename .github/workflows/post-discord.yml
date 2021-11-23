@@ -10,14 +10,17 @@ jobs:
   one:
     runs-on: ${{ matrix.os }}
     outputs:
-      ubuntu-latest: ${{ steps.step1.outputs.ubuntu-latest }}    
-      windows-latest: ${{ steps.step1.outputs.windows-latest }}    
+      test: ${{ steps.step1.outputs.test }}    
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
     - id: step1
-      run: echo "::set-output name=${{ matrix.os }}::${{ matrix.os }}"
+      run: |
+        var=$([ -z "${{steps.step1.outputs.test}}" ] && echo "[]" || echo "${{steps.step1.outputs.test}}")
+        echo "$var" | jq '. += ["${{ matrix.os }}"]'
+        echo "::set-output name=test::$(echo "$var" | jq '. += ["${{ matrix.os }}"]')"
+        
   two:
     runs-on: ubuntu-latest
     needs: one
