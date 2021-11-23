@@ -41,7 +41,7 @@ jobs:
        echo '${{ toJson(steps.step2) }}'
        echo '${{ toJson(steps.step3) }}'
        echo '${{ toJson(steps) }}'
-       echo '${{ toJson(steps.*.outcome) }}'
+       echo '${{ toJson(steps.*.outcome) }}' | jq  'del(.[].outputs)' | jq  'del(.[].conclusion)'
        
         
   two:
