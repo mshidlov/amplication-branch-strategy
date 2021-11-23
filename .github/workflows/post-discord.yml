@@ -31,7 +31,7 @@ jobs:
     - name: test1
       run: echo "test1"
     - name: test2
-      if: failur()
+      if: failed()
       run: echo "test2"      
         
   two:
