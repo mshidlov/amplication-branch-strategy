@@ -17,8 +17,9 @@ jobs:
     steps:
     - name: fail
       run: exit(1)
-      continue-on-error: true
+#       continue-on-error: true
     - id: step1
+      if: always()
       run: |
       
         var1=$([ -z "${{steps.step1.outputs.test}}" ] && echo "[]" || echo "${{steps.step1.outputs.test}}")
