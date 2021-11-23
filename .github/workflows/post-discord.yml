@@ -40,8 +40,8 @@ jobs:
        echo '${{ toJson(steps.step1) }}'
        echo '${{ toJson(steps.step2) }}'
        echo '${{ toJson(steps.step3) }}'
-       echo '${{ toJson(steps) }}'
-       echo '${{ toJson(steps.*.outcome) }}' | jq  'del(.[].outputs)' | jq  'del(.[].conclusion)'
+       echo '${{ toJson(steps) }}' | jq  'del(.[].outputs)' | jq  'del(.[].conclusion)'
+       echo '${{ toJson(steps.*.outcome) }}'
        
         
   two:
