@@ -24,6 +24,7 @@ jobs:
     - run: echo '${{ needs.one.outputs.myvar }}'
     - run: echo '${{ toJson(needs.one.outputs.myvar) }}'
     - run: echo '${{ toJson(needs.one.outputs) }}'
+    - run: echo '${{ toJson(needs) }}'
 
 
 
