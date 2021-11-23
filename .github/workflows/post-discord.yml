@@ -18,8 +18,10 @@ jobs:
     - id: step1
       run: |
         var=$([ -z "${{steps.step1.outputs.test}}" ] && echo "[]" || echo "${{steps.step1.outputs.test}}")
+        echo "$var"
         echo "$var" | jq '. += ["${{ matrix.os }}"]'
-        echo "::set-output name=test::$(echo "$var" | jq '. += ["${{ matrix.os }}"]')"
+        var=$(echo "$var" | jq '. += ["${{ matrix.os }}"]')
+        echo "::set-output name=test::$var"
         
   two:
     runs-on: ubuntu-latest
