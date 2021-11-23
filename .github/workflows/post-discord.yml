@@ -8,12 +8,12 @@ on:
 
 jobs:
   one:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     outputs:
       test: ${{ steps.step1.outputs.test }}    
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [1, 2]
     steps:
     - id: step1
       run: |
