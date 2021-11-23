@@ -14,7 +14,7 @@ jobs:
       - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_EMBEDS: "[{color:0x0099ff,title:'Some title',url:'https://discord.js.org',author:{name:'Some name',icon_url:'https://i.imgur.com/AfFp7pu.png',url:'https://discord.js.org',},description:'Some description here',thumbnail:{url:'https://i.imgur.com/AfFp7pu.png',},fields:[{name:'Regular field title',value:'Some value here',},{name:'\u200b',value:'\u200b',inline:false,},{name:'Inline field title',value:'Some value here',inline:true,},{name:'Inline field title',value:'Some value here',inline:true,},{name:'Inline field title',value:'Some value here',inline:true,},],image:{url:'https://i.imgur.com/AfFp7pu.png',},timestamp:newDate(),footer:{text:'Some footer text here',icon_url:'https://i.imgur.com/AfFp7pu.png',},}]"
+          DISCORD_EMBEDS: "{"color":39423,"title":"Some title","url":"https://discord.js.org","author":{"name":"Some name","icon_url":"https://i.im gur.com/AfFp7pu.png","url":"https://discord.js.org"},"description":"Some description here","thumbnail":{"url":"https://i .imgur.com/AfFp7pu.png"},"fields":[{"name":"Regular field title","value":"Some value here"},{"name":"​","value":"​","inl ine":false},{"name":"Inline field title","value":"Some value here","inline":true},{"name":"Inline field title","value":" Some value here","inline":true},{"name":"Inline field title","value":"Some value here","inline":true}],"image":{"url":"h ttps://i.imgur.com/AfFp7pu.png"},"timestamp":"2021-11-23T18:31:56.754Z","footer":{"text":"Some footer text here","icon_u rl":"https://i.imgur.com/AfFp7pu.png"}}"
           
           
           #'[{"title":"Meow!","color":1127128},{"title":"Meow-meow!","color":14177041}]'
