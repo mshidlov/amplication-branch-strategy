@@ -41,6 +41,7 @@ jobs:
        echo '${{ toJson(steps.step2) }}'
        echo '${{ toJson(steps.step3) }}'
        echo '${{ toJson(steps) }}'
+       echo '${{ toJson(steps.*.outcome) }}'
        
         
   two:
