@@ -16,6 +16,7 @@ jobs:
         os: [1, 2]
     steps:
     - name: fail
+      id: step0
       run: exit(1)
 #       continue-on-error: true
     - id: step1
@@ -29,10 +30,17 @@ jobs:
         echo "set-output"
         echo ::set-output name=test::$var
     - name: test1
+      id: step2
       run: echo "test1"
     - name: test2
+      id: step3
       if: failure()
-      run: echo "test2"      
+      run: |
+       echo '${{ toJson(steps.step0) }}'
+       echo '${{ toJson(steps.step1) }}'
+       echo '${{ toJson(steps.step2) }}'
+       echo '${{ toJson(steps.step3) }}'
+       
         
   two:
     runs-on: ubuntu-latest
