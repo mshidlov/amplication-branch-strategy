@@ -1,25 +1,31 @@
 name: Deploy To Staging
 
 on:
-  pull_request:
+#   pull_request:
     
-  issue_comment:
-    types: [ created ]
+#   issue_comment:
+#     types: [ created ]
+  issues:
+    types:
+      - opened
+      - reopened
+      - closed
 
 jobs:
   all:
     runs-on: ubuntu-latest
     steps:
       - uses: hmarr/debug-action@v2
-      - run: echo "${{GITHUB_HEAD_REF}}"
-      - run: echo "${{GITHUB_BASE_REF}}"
-  create_feature_branch:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.comment.body == 'CB-F'}}
-    steps:
-      - name: Create Feature Branch
-        uses: peterjgrainger/action-create-branch@v2.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          branch: feature/${{github.event.issue.number}}
+#       - run: echo "$GITHUB_HEAD_REF"
+#       - run: echo "$GITHUB_BASE_REF"
+      
+#   create_feature_branch:
+#     runs-on: ubuntu-latest
+#     if: ${{ github.event.comment.body == 'CB-F'}}
+#     steps:
+#       - name: Create Feature Branch
+#         uses: peterjgrainger/action-create-branch@v2.0.1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           branch: feature/${{github.event.issue.number}}
